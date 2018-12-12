@@ -20,8 +20,8 @@ namespace
 	}
 }
 
-Lexer::Lexer(std::istream & in)
-    : in_(in)
+Lexer::Lexer(std::istream & is)
+    : is_(is)
     , line_(0)
 {
 }
@@ -59,12 +59,12 @@ Token Lexer::nextToken()
 
 void Lexer::next()
 {
-    current_ = in_.get();
+    current_ = is_.get();
 }
 
 void Lexer::putback()
 {
-    in_.putback(current_);
+    is_.putback(current_);
 }
 
 Token Lexer::read_num()

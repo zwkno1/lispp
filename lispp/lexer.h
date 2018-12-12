@@ -7,8 +7,10 @@
 class Lexer
 {
 public:
-    Lexer(std::istream & in);
+    Lexer(std::istream & is);
+
 	Token nextToken();
+
     //size_t line() const { return line_; }
 private:
 	inline Token make_token(TokenType type) { return Token{ type }; }
@@ -25,7 +27,7 @@ private:
 
     Token read_symbol();
 
-    std::istream & in_;
+    std::istream & is_;
 
     size_t line_;
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <string>
 
 #include "shared.h"
 #include "handle.h"
@@ -10,6 +11,9 @@ enum ObjectType : std::uint8_t
 	OBJECT_NUMBER,
 	OBJECT_LIST,
 	OBJECT_FUNCTION,
+	OBJECT_SYMBOL,
+	OBJECT_TRUE,
+	OBJECT_NIL,
 };
 
 class Object : public Shared
@@ -87,4 +91,38 @@ public:
 };
 
 typedef Handle<Function> FunctionPtr;
+
+class Symbol : public Object
+{
+public:
+	Symbol()
+		: Object(OBJECT_SYMBOL)
+	{
+	}
+private:
+	std::string id_;
+};
+typedef Handle<Symbol> SymbolPtr;
+
+class True : public Object
+{
+public:
+	True()
+		: Object(OBJECT_TRUE)
+	{
+	}
+};
+typedef Handle<True> TruePtr;
+
+class Nil : public Object
+{
+public:
+	Nil()
+		: Object(OBJECT_NIL)
+	{
+	}
+};
+
+typedef Handle<Nil> NilPtr;
+
 
